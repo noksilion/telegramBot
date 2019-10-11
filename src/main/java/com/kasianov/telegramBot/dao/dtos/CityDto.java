@@ -18,7 +18,6 @@ import java.util.List;
 public class CityDto {
     @Size(min = 1, max = 20, message = "size must be more than 0 and no more than 20 letters")
     @NotNull(message = "name can not be null")
-    @NotBlank(message = "information can not be blank")
     private String name;
 
     @NotNull(message = "city info can not be null")
