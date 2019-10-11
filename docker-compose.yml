@@ -1,0 +1,21 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: telegram_bot:latest
+    container_name: telegram_bot
+    depends_on:
+      - telegram_postgres
+    ports:
+      - "8081:8081"
+    restart: always
+
+  telegram_postgres:
+    container_name: telegram_postgres
+    image: postgres:11.4
+    environment:
+      - POSTGRES_DB=telegram_postgres
+    ports:
+      - "5433:5433"

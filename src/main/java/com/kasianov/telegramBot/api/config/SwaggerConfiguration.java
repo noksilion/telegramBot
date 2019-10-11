@@ -1,4 +1,4 @@
-package com.kasianov.telegramBot.api.controllers;
+package com.kasianov.telegramBot.api.config;
 
 import com.google.common.collect.Lists;
 import org.springframework.context.annotation.Bean;
@@ -22,21 +22,12 @@ public class SwaggerConfiguration {
         return new Docket(DocumentationType.SWAGGER_2).select()
                 .apis(RequestHandlerSelectors.basePackage("com.kasianov.telegramBot"))
                 .build()
-                .apiInfo(apiInfo())
-                .securitySchemes(Lists.newArrayList(apiKey()));
+                .apiInfo(apiInfo());
     }
 
     private ApiInfo apiInfo() {
-        return new ApiInfo("Your REST API", "Your REST API for web app", "1.0", "Terms of service",
-               "bla", "", "");
+        return new ApiInfo("City Info Bot ", "REST API for City Info Bo", "1.0", "Terms of service",
+                "noksilion@gmail.com", "", "");
     }
 
-    @Bean
-    public SecurityConfiguration securityInfo() {
-        return new SecurityConfiguration(null, null, null, null, "", ApiKeyVehicle.HEADER, "Authorization", "");
-    }
-
-    private ApiKey apiKey() {
-         return new ApiKey("Authorization", "Authorization", "header");
-         }
-         }
+}

@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ControllerAdvice(basePackages = "telegramBot")
+@ControllerAdvice(basePackages = "com.kasianov.telegramBot")
 public class GeneralControllerAdvice {
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
@@ -39,6 +40,13 @@ public class GeneralControllerAdvice {
     @ResponseBody
     private BaseErrorDTO noSuchPositionException(NoSuchEntityException e) {
         return mapException(e, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(VoidMessageException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseBody
+    private BaseErrorDTO noSuchPositionException(VoidMessageException e) {
+        return mapException(e, HttpStatus.CONFLICT);
     }
 
 
